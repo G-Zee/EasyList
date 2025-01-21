@@ -1,0 +1,79 @@
+{
+  "name": "easylist",
+  "displayName": "EasyList",
+  "description": "Quick access wrapper for list tags",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "easylist.ping",
+        "title": "Ping"
+      },
+      {
+        "command": "easylist.wrapWithLi",
+        "title": "Wrap with <li> tags"
+      },
+      {
+        "command": "easylist.wrapWithOl",
+        "title": "Wrap with <ol> tags"
+      },
+      {
+        "command": "easylist.wrapWithUl",
+        "title": "Wrap with <ul> tags"
+      },
+      {
+        "command": "easylist.generateList",
+        "title": "Try to generate list via ':' and '\n'"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "easylist.wrapWithLi",
+        "key": "ctrl+alt+l",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "easylist.wrapWithOl",
+        "key": "ctrl+alt+o",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "easylist.wrapWithUl",
+        "key": "ctrl+alt+u",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "easylist.generateList",
+        "key": "ctrl+alt+g",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.96.0",
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@typescript-eslint/eslint-plugin": "^8.17.0",
+    "@typescript-eslint/parser": "^8.17.0",
+    "eslint": "^9.16.0",
+    "typescript": "^5.7.2",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1"
+  }
+}
