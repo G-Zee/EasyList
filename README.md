@@ -70,6 +70,24 @@ No special requirements or dependencies are needed. Just install the extension a
 
 ---
 
+## How to Share and Install
+
+### Share the Extension:
+1. Package the extension as a `.vsix` file using the following command in your terminal:
+   ```bash
+   vsce package
+   ```
+2. This generates a file like `easylist-1.0.0.vsix`.
+3. Share this file via email, cloud storage, or any file-sharing platform.
+
+### Install the Extension:
+1. Open VS Code and navigate to the **Extensions View** (`Ctrl+Shift+X`).
+2. Click the ellipsis (`...`) in the top-right corner.
+3. Select **Install from VSIX...** and choose the `.vsix` file.
+
+
+---
+
 ## Commands and Keybindings
 
 EasyList provides the following commands, accessible via the Command Palette (`Ctrl+Shift+P`) or with customizable keybindings:
