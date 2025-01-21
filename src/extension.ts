@@ -23,35 +23,48 @@ export function activate(context: vscode.ExtensionContext) {
 		});
 		
 	});
-	const wrapWithOlTags = vscode.commands.registerCommand('easylist.wrapWithOl',()=>{
+	const wrapWithOlTags = vscode.commands.registerCommand('easylist.wrapWithOl', () => {
 		const activeTextEditor = vscode.window.activeTextEditor;
-		if(!activeTextEditor){
+		if (!activeTextEditor) {
 			console.error('Failed to load the editor');
 			return;
 		}
 
 		const selection = activeTextEditor.selection;
 		const text = activeTextEditor.document.getText(selection);
-		const wrappedText = text.split('\n')
-								.map(line => `<ol>${line.trim()}</ol>`)
-								.join('\n');
+		const wrappedText = `<ol>\n${text
+			.split('\n')
+			.map(line => {
+				if (line.trim().startsWith('<li>') && line.trim().endsWith('</li>')) {
+					return `  ${line.trim()}`;
+				}
+				return `  <li>${line.trim()}</li>`;
+			})
+			.join('\n')}\n</ol>`;
 
 		activeTextEditor.edit(editBuilder => {
 			editBuilder.replace(selection, wrappedText);
 		});
 	});
-	const wrapWithUlTags = vscode.commands.registerCommand('easylist.wrapWithUl',()=>{
+
+	const wrapWithUlTags = vscode.commands.registerCommand('easylist.wrapWithUl', () => {
 		const activeTextEditor = vscode.window.activeTextEditor;
-		if(!activeTextEditor){
+		if (!activeTextEditor) {
 			console.error('Failed to load the editor');
 			return;
 		}
 
 		const selection = activeTextEditor.selection;
 		const text = activeTextEditor.document.getText(selection);
-		const wrappedText = text.split('\n')
-								.map(line => `<ul>${line.trim()}</ul>`)
-								.join('\n');
+		const wrappedText = `<ul>\n${text
+			.split('\n')
+			.map(line => {
+				if (line.trim().startsWith('<li>') && line.trim().endsWith('</li>')) {
+					return `  ${line.trim()}`;
+				}
+				return `  <li>${line.trim()}</li>`;
+			})
+			.join('\n')}\n</ul>`;
 
 		activeTextEditor.edit(editBuilder => {
 			editBuilder.replace(selection, wrappedText);
